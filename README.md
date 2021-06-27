@@ -1,11 +1,13 @@
-Master: [![Build Status](https://travis-ci.org/Ulauncher/Ulauncher.svg?branch=master)](https://travis-ci.org/Ulauncher/Ulauncher)
-Dev: [![Build Status](https://travis-ci.org/Ulauncher/Ulauncher.svg?branch=dev)](https://travis-ci.org/Ulauncher/Ulauncher)
-
-
 [Application Launcher for Linux 🐧](https://ulauncher.io)
 ================================
 
-Ulauncher is a fast application launcher for Linux. It's is written in Python, using GTK+.
+Ulauncher is a fast and nice looking application launcher for Linux. It's is written in Python, using GTK+, and has many extra features, and an ecosystem of third party extensions. Unfortunately the author and maintainer of Ulauncher is not responding on github or slack, and the experience is now broken for many people (and will be for even more people when they update to GTK4).
+
+**Ulauncher Revived** is an attempt to to keep the project alive. Merging some critical PR's and maybe fixing other issues. I'm not going to add new features unless it's something that's been bothering me a lot and it's a trivial change, or if someone else submits a PR.
+
+Please join me and help out. I have limited time for this, and I don't want to be the sole person involved in the project.
+
+Ulauncher Revived will not be rebranding the actual app. Just the name of this repository, and to the degree we get there, the name in package managers, because the missing maintainer has the sole control of the Ulauncher name, domain and repo.
 
 | App Search | File Browser | Custom Themes |
 ---|---|---

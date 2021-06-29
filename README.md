@@ -1,46 +1,29 @@
-[Application Launcher for Linux 🐧](https://ulauncher.io)
+Ulauncher Revived 🐧
 ================================
 
-Ulauncher is a fast and nice looking application launcher for Linux. It's is written in Python, using GTK+, and has many extra features, and an ecosystem of third party extensions. Unfortunately the author and maintainer of Ulauncher is not responding on github or slack, and the experience is now broken for many people (and will be for even more people when they update to GTK4).
+Ulauncher Revived is a fast and great looking application launcher for Linux. It has many built in features, and an ecosystem of third party extensions. It was crafted with love and care by the original author under the name [Ulauncher](https://github.com/Ulauncher/Ulauncher). Until it was recently [abandoned(?)](https://github.com/Ulauncher/Ulauncher/pull/717#issuecomment-814506846) Ulauncher was a pleasure to use. This fork aim to bring it back to life, and improve the experience, performance and reduce complexity in some of the other cases, but not change the direction of the project. The name of the app is still going to be "Ulauncher", but the project name here and in distro packages has to be different.
 
-**Ulauncher Revived** is an attempt to to keep the project alive. Merging some critical PR's and maybe fixing other issues. I'm not going to add new features unless it's something that's been bothering me a lot and it's a trivial change, or if someone else submits a PR.
+Distro support is [planned](https://github.com/friday/Ulauncher-Revived/issues/2), but it may take a while. Please be patient.
 
-Please join me and help out. I have limited time for this, and I don't want to be the sole person involved in the project.
-
-Ulauncher Revived will not be rebranding the actual app. Just the name of this repository, and to the degree we get there, the name in package managers, because the missing maintainer has the sole control of the Ulauncher name, domain and repo.
 
 | App Search | File Browser | Custom Themes |
 ---|---|---
 |![screenshot](http://i.imgur.com/8FpJLGG.png?1)|![screenshot](http://i.imgur.com/wJvXSmP.png?1)|![screenshot](http://i.imgur.com/2a4GCW7.png?1)|
 
-Download it at [ulauncher.io](http://ulauncher.io)
 
+[Create your own Extensions](http://docs.ulauncher.io/)
+[Create your own Color themes](http://docs.ulauncher.io/en/latest/themes/themes.html)
 
-[Create Your Ulauncher Extensions](http://docs.ulauncher.io/)
-==============================================================
+## Using with Systemd
 
-As of Ulauncher v3, you can create your own Ulauncher extensions
-Check out [docs.ulauncher.io](http://docs.ulauncher.io/) to find out how.
-
-
-[Create Your Ulauncher Color themes](http://docs.ulauncher.io/en/latest/themes/themes.html)
-==============================================================
-
-As of Ulauncher v4, you can create your own color themes
-Check out [docs.ulauncher.io](http://docs.ulauncher.io/en/latest/themes/themes.html) to find out how.
-
-[Systemd users](https://www.freedesktop.org/wiki/Software/systemd/)
-==============================================================
-
-If your distribution packages [ulauncher.service](contrib/systemd/ulauncher.service) properly, then you can run `ulauncher` on startup by running:
+If your distribution packages [ulauncher.service](contrib/systemd/ulauncher.service), then you can enable and start `ulauncher` by running:
 
 ```
-systemctl --user enable ulauncher.service
+systemctl --user enable --now ulauncher.service
 ```
 
 
-Known Issues
-============
+## Known Issues
 
 * Ubuntu 14.04 is not supported since v4.0
 * If your DE doesn't use compositing, run ulauncher with `--no-window-shadow` to remove a black box around a window
@@ -50,20 +33,17 @@ Known Issues
 * [[Workaround exists] Border appears around ulauncher window in Sway DE](https://github.com/Ulauncher/Ulauncher/issues/230#issuecomment-570736422)
 
 
-Code Contribution
-=================
-
+## Code Contribution
 
 | Project | Contributor-friendly Issues |
 ---|---
-| Ulauncher App | [![GitHub issues by-label](https://img.shields.io/github/issues/Ulauncher/Ulauncher/contributor-friendly.svg?color=3cf014&label=All%20contributor-friendly&style=for-the-badge)](https://github.com/Ulauncher/Ulauncher/labels/contributor-friendly) <br> [![GitHub issues by-label](https://img.shields.io/github/issues/Ulauncher/Ulauncher/Python.svg?color=5319e7&label=Python&style=for-the-badge)](https://github.com/Ulauncher/Ulauncher/labels/Python) <br> [![GitHub issues by-label](https://img.shields.io/github/issues/Ulauncher/Ulauncher/JS.svg?color=a553cc&label=JS&style=for-the-badge)](https://github.com/Ulauncher/Ulauncher/labels/JS) <br> [![GitHub issues by-label](https://img.shields.io/github/issues/Ulauncher/Ulauncher/Linux.svg?color=0e035e&label=Linux&style=for-the-badge)](https://github.com/Ulauncher/Ulauncher/labels/Linux)|
+| Ulauncher App | [![GitHub issues by-label](https://img.shields.io/github/issues/friday/Ulauncher-Revived/contributor-friendly.svg?color=3cf014&label=All%20contributor-friendly&style=for-the-badge)](https://github.com/friday/Ulauncher-Revived/labels/contributor-friendly) <br> [![GitHub issues by-label](https://img.shields.io/github/issues/friday/Ulauncher-Revived/Python.svg?color=5319e7&label=Python&style=for-the-badge)](https://github.com/friday/Ulauncher-Revived/labels/Python) <br> [![GitHub issues by-label](https://img.shields.io/github/issues/friday/Ulauncher-Revived/JS.svg?color=a553cc&label=JS&style=for-the-badge)](https://github.com/friday/Ulauncher-Revived/labels/JS) <br> [![GitHub issues by-label](https://img.shields.io/github/issues/friday/Ulauncher-Revived/Linux.svg?color=0e035e&label=Linux&style=for-the-badge)](https://github.com/friday/Ulauncher-Revived/labels/Linux)|
 | [Frontend for extensions website](https://github.com/Ulauncher/ext.ulauncher.io) <br> Uses ReactJS | [![GitHub issues by-label](https://img.shields.io/github/issues/Ulauncher/ext.ulauncher.io/contributor-friendly.svg?color=3cf014&label=contributor-friendly&style=for-the-badge)](https://github.com/Ulauncher/ext.ulauncher.io/labels/contributor-friendly)|
 | [API for extensions website](https://github.com/Ulauncher/ext-api.ulauncher.io) <br> Uses Python and bottle library | [![GitHub issues by-label](https://img.shields.io/github/issues/Ulauncher/ext-api.ulauncher.io/contributor-friendly.svg?color=3cf014&label=contributor-friendly&style=for-the-badge)](https://github.com/Ulauncher/ext-api.ulauncher.io/labels/contributor-friendly)|
 
-Any code contributions are welcomed as long as they are discussed in [Github Issues](https://github.com/Ulauncher/Ulauncher/issues) with maintainers.
-Be aware that if you decide to change something and submit a PR on your own, it may not be accepted.
+Code contributions are very welcome, but for your own sake please do create an issue first (if there aren't any) to confirm that the maintainers want your PR.
 
-Checkout [Code Contribution Guidelines](https://github.com/Ulauncher/Ulauncher/wiki/Code-Contribution) for more info.
+Checkout [Code Contribution Guidelines](https://github.com/friday/Ulauncher-Revived/wiki/Code-Contribution) for more info.
 
 ### Setup Development Environment
 
@@ -102,7 +82,6 @@ You must have the following things installed:
 Check out output of `./ul` to find more useful commands.
 
 
-License
-=======
+## License
 
 See the [LICENSE](LICENSE) file for license rights and limitations (GNU GPL v3.0).

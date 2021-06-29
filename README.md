@@ -1,7 +1,7 @@
 Ulauncher Revived 🐧
 ================================
 
-Ulauncher Revived is a fast and great looking application launcher for Linux. It has many built in features, and an ecosystem of third party extensions. It was crafted with love and care by the original author under the name [Ulauncher](https://github.com/Ulauncher/Ulauncher). Until it was recently [abandoned(?)](https://github.com/Ulauncher/Ulauncher/pull/717#issuecomment-814506846) Ulauncher was a pleasure to use. This fork aim to bring it back to life, and improve the experience, performance and reduce complexity in some of the other cases, but not change the direction of the project. The name of the app is still going to be "Ulauncher", but the project name here and in distro packages has to be different.
+Ulauncher Revived is a fast and great looking application launcher for Linux. It has many built in features, and an ecosystem of third party extensions. It was crafted with love and care by the original author under the name [Ulauncher](https://github.com/Ulauncher/Ulauncher). Until it was recently [abandoned(?)](https://github.com/Ulauncher/Ulauncher/pull/717#issuecomment-814506846) Ulauncher was a pleasure to use. This fork aim to bring it back to life, and improve the experience, performance and reduce complexity in some of the other cases, but not change the user experience or break compatibility with Ulauncher extensions. The name of the app is still going to be "Ulauncher", but the project name here and in distro packages has to be different.
 
 Distro support is [planned](https://github.com/friday/Ulauncher-Revived/issues/2), but it may take a while. Please be patient.
 

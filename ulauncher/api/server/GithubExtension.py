@@ -123,7 +123,7 @@ class GithubExtension:
 
             valid = False
             try:
-                valid = valid_range(ver['required_api_version'], False)
+                valid = valid_range(ver['required_api_version'])
             # pylint: disable=broad-except
             except Exception:
                 pass

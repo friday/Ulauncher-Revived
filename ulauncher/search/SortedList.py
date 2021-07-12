@@ -48,7 +48,7 @@ class SortedList:
         search_names = result_item.get_search_name().split("\n")
         score = get_score(self._query, search_names[0])
         if (len(search_names) > 1) and (search_names[1]):
-            score = max(score, get_score(self._query, search_names[1]))
+            score = max(score, get_score(self._query, search_names[1]) * .8)
         if score >= self._min_score:
             result_item.score = -score  # use negative to sort by score in desc. order
             self._items.insert(result_item)

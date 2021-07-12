@@ -155,14 +155,11 @@ class AppDb:
         return result_list
 
 
-def search_name(name, exec_name):
+def search_name(name, exec_name=""):
     """
     Returns string that will be used for search
     We want to make sure app can be searchable by its exec_name
     """
-    if not exec_name:
-        return name
-
     # drop env vars
     exec_name = ' '.join([p for p in exec_name.split(' ') if p != 'env' and '=' not in p])
 
@@ -177,6 +174,6 @@ def search_name(name, exec_name):
     common_words = exec_name_split & name_split
 
     if common_words:
-        return name
+        exec_name = ""
 
-    return '%s %s' % (name, exec_name)
+    return "%s\n%s" % (name, exec_name)

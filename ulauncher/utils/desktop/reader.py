@@ -59,7 +59,11 @@ def filter_app(app):
     :param Gio.DesktopAppInfo app:
     :returns: True if app can be added to the database
     """
-    return app and app.get_string('Name') and app.get_string('Type') == 'Application' and app.should_show() and not app.get_is_hidden()
+    # Make an exception for gnome-control-center, because all the very useful specific settings
+    # like "Keyboard", "Wi-Fi", "Sound" etc have NoDisplay=true
+    nodisplay = app and app.get_nodisplay() and not app.get_executable() == 'gnome-control-center'
+    return app and app.get_string('Name') and app.get_string('Type') == 'Application' \
+        and app.get_show_in() and not nodisplay and not app.get_is_hidden()
 
 
 def read_desktop_file(file):

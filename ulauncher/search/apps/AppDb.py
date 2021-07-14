@@ -70,6 +70,8 @@ class AppDb:
         """
         name = app.get_string('X-GNOME-FullName') or app.get_name()
         exec_name = app.get_string('Exec') or ''
+        comment = app.get_string('Comment') or ''
+        keywords = app.get_string('Keywords') or ''
         description = app.get_description() or ''
         if not description and (app.get_generic_name() != name):
             description = app.get_generic_name() or ''
@@ -78,7 +80,7 @@ class AppDb:
             "desktop_file_short": os.path.basename(app.get_filename()),
             "description": app.get_description() or '',
             "name": name,
-            "search_name": search_name(name, exec_name)
+            "search_name": search_name(name, exec_name, comment, keywords, description)
         }
         self._app_icon_cache.add_icon(record['desktop_file'], app.get_icon(), app.get_string('Icon'))
 
@@ -155,7 +157,7 @@ class AppDb:
         return result_list
 
 
-def search_name(name, exec_name=""):
+def search_name(name, exec_name="", comment="", keywords="", description=""):
     """
     Returns string that will be used for search
     We want to make sure app can be searchable by its exec_name
@@ -169,11 +171,5 @@ def search_name(name, exec_name=""):
         return name
 
     exec_name = match.group(2)
-    exec_name_split = set(exec_name.split('-'))
-    name_split = set(name.lower().split(' '))
-    common_words = exec_name_split & name_split
 
-    if common_words:
-        exec_name = ""
-
-    return "%s\n%s" % (name, exec_name)
+    return "%s\n%s\n%s\n%s\n%s" % (name, exec_name, comment, keywords, description)

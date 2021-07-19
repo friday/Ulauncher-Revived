@@ -25,10 +25,3 @@ class ExtensionDb(KeyValueJsonDb[str, ExtensionRecord]):
         db.open()
 
         return db
-
-    def find_by_url(self, url: str) -> Optional[ExtensionRecord]:
-        for ext in self.get_records().values():
-            if ext['url'] == url:
-                return ext
-
-        return None

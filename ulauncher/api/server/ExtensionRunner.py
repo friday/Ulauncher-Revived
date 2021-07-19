@@ -109,7 +109,7 @@ class ExtensionRunner:
                 if line != "":
                     lasterr = line
                     print(line, end='')
- 
+
             code = proc.returncode
 
             if code <= 0:

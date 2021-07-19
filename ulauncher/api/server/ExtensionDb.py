@@ -1,5 +1,5 @@
 import os
-from typing import Type, Optional
+from typing import Type
 from ulauncher.utils.mypy_extensions import TypedDict
 
 from ulauncher.config import CONFIG_DIR

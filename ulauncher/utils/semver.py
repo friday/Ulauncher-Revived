@@ -22,7 +22,7 @@ def get_version(version_string):
     match = list(filter(bool, (version_string + ".").split(".")))
     version = list(map(part_to_number, match))
     length = len(version)
-    if length > 0 and length <= 3 and length == len(list(filter(is_int, version))):
+    if length > 0 <= 3 and length == len(list(filter(is_int, version))):
         # pad to 3 digits
         return version + ([0] * (3 - len(version)))
     return None

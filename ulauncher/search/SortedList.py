@@ -48,7 +48,7 @@ class SortedList:
         name, *meta_fields = result_item.get_search_name().split("\n")
 
         score = get_score(self._query, name)
-        if (len(meta_fields) == 4):
+        if len(meta_fields) == 4:
             [exec, comment, keywords, description] = meta_fields
             exec_score = get_score(self._query, exec)
             comment_score = get_score(self._query, comment)

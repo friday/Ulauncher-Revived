@@ -98,7 +98,7 @@ class ExtensionRunner:
 
         while True:
             t_start = time()
-            proc = Popen(cmd, env=env, stderr=PIPE)
+            proc = Popen(cmd, env=env, stdout=sys.stdout, stderr=sys.stderr)
             logger.info('Extension "%s" started. PID %s', extension_id, proc.pid)
             self.extension_procs[extension_id] = proc
             self.unset_extension_error(extension_id)

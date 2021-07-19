@@ -11,6 +11,10 @@ from ulauncher.search.apps.AppIconCache import AppIconCache
 logger = logging.getLogger(__name__)
 
 
+def normalize_search_string(string):
+    return re.sub('[^0-9a-z]+', '', string.lower())
+
+
 class AppDb:
 
     @classmethod
@@ -146,7 +150,7 @@ class AppDb:
         :rtype: :class:`ResultList`
         """
 
-        result_list = result_list or SortedList(query, min_score=50, limit=9)
+        result_list = result_list or SortedList(query, min_score=75, limit=9)
 
         if not query:
             return result_list
@@ -162,14 +166,16 @@ def search_name(name, exec_name="", comment="", keywords="", description=""):
     Returns string that will be used for search
     We want to make sure app can be searchable by its exec_name
     """
+    # replace all special chars with space
+    name = normalize_search_string(name)
+    comment = normalize_search_string(comment)
+    description = normalize_search_string(description)
+
     # drop env vars
     exec_name = ' '.join([p for p in exec_name.split(' ') if p != 'env' and '=' not in p])
 
     # drop "/usr/bin/"
     match = re.match(r'^(\/.+\/)?([-\w\.]+)([^\w\/]|$)', exec_name.lower(), re.I)
-    if not match:
-        return name
-
-    exec_name = match.group(2)
+    exec_name = match.group(2) if match else ""
 
     return "%s\n%s\n%s\n%s\n%s" % (name, exec_name, comment, keywords, description)

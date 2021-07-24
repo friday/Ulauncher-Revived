@@ -36,10 +36,6 @@ build-targz () {
     # This is only needed because data/preferences is in .gitignore
     cp -r data/preferences $tmpdir/data/preferences
 
-    # set version to a tag name ($1)
-    sed -i "s/__version__ =.*/__version__ = '$1'/g" $tmpdir/ulauncher/config.py
-    sed -i "s/%VERSION%/$1/g" $tmpdir/setup.py
-
     filename=$name
     if [ ! -z "$1" ]; then
         filename="${name}_$1"

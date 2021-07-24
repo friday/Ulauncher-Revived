@@ -3,18 +3,15 @@
 # files). By default, this is ../data, relative your trunk layout
 # pylint: disable=deprecated-module
 import optparse
-
-__ulauncher_data_directory__ = '../data/'
-__license__ = 'GPL-3'
-__version__ = 'VERSION'
-
 import os
 from uuid import uuid4
 from time import time
 from functools import lru_cache
-
 from gettext import gettext
 from xdg.BaseDirectory import xdg_config_home, xdg_cache_home, xdg_data_dirs, xdg_data_home
+from ulauncher import __version__
+
+__ulauncher_data_directory__ = '../data/'
 
 DATA_DIR = os.path.join(xdg_data_home, 'ulauncher')
 # Use ulauncher_cache dir because of the WebKit bug
@@ -81,7 +78,7 @@ def gdk_backend():
 @lru_cache()
 def get_options():
     """Support for command line options"""
-    parser = optparse.OptionParser(version="%%prog %s" % get_version())
+    parser = optparse.OptionParser(version="%%prog %s" % __version__)
     parser.add_option(
         "-v", "--verbose", action="count", dest="verbose",
         help=gettext("Show debug messages"))

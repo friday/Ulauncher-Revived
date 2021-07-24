@@ -55,9 +55,6 @@ build-rpm () {
     # This is only needed because data/preferences is in .gitignore
     cp -r data/preferences $tmpdir/data/preferences
 
-    # set version to a tag name
-    sed -i "s/%VERSION%/$version/g" $tmpdir/setup.py
-
     cd $tmpdir
 
     sed -i "s/\[bdist_rpm_$distro_name\]/[bdist_rpm]/g" setup.cfg

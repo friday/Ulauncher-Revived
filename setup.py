@@ -114,8 +114,7 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
         target_scripts = '/' + os.path.relpath(self.install_scripts,
                                                self.root) + '/'
 
-        values = {'__ulauncher_data_directory__': "'%s'" % (target_pkgdata),
-                  '__version__': "'%s'" % self.distribution.get_version()}
+        values = {'__ulauncher_data_directory__': "'%s'" % (target_pkgdata)}
         update_config(self.install_lib, values)
 
         desktop_file = move_desktop_file(self.root, target_data, self.prefix)
@@ -191,7 +190,7 @@ def main():
 
     DistUtilsExtra.auto.setup(
         name='ulauncher',
-        version='%VERSION%',
+        version=open("ulauncher/VERSION").read().strip(),
         license='GPL-3',
         author='Aleksandr Gornostal',
         author_email='ulauncher.app@gmail.com',

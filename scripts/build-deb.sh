@@ -60,7 +60,6 @@ build-deb () {
     cp -r data/preferences $tmpdir/data/preferences
 
     cd $tmpsrc
-    sed -i "s/%VERSION%/$version/g" setup.py
 
     if [ "$2" = "--deb" ]; then
         sed -i "s/%VERSION%/$version/g" debian/changelog

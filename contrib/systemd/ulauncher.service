@@ -10,4 +10,4 @@ RestartSec=1
 ExecStart=/usr/bin/ulauncher --hide-window
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target

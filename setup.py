@@ -2,6 +2,7 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 
 import os
+import subprocess
 import sys
 from glob import glob
 from setuptools import find_packages, setup
@@ -22,6 +23,8 @@ def data_files_from_path(package_path, real_path):
 
 class build_wrapper(build_py):
     def run(self):
+        # Build Preferences before python package build
+        subprocess.run(["./ul", "build-preferences"], check=True)
         build_py.run(self)
         print("Overwriteing the namespace package with fixed values")
         namespace_package = os.path.realpath(os.path.join(self.build_lib, "ulauncher/__init__.py"))

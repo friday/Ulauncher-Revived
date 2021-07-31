@@ -48,7 +48,7 @@ build-rpm () {
         setup.cfg \
         setup.py \
         ulauncher \
-        ulauncher.desktop.in \
+        ulauncher.desktop \
         $tmpdir \
         --exclude-from=.gitignore
 

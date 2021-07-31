@@ -52,7 +52,7 @@ build-deb () {
         setup.cfg \
         setup.py \
         ulauncher \
-        ulauncher.desktop.in \
+        ulauncher.desktop \
         $tmpsrc \
         --exclude-from=.gitignore
 

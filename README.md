@@ -53,7 +53,7 @@ Checkout [Code Contribution Guidelines](https://github.com/friday/Ulauncher-Revi
 You must have the following things installed:
 
 * [Docker](https://docs.docker.com/engine/installation/)
-* python3-distutils-extra
+* python3-setuptools
 * Application runtime dependencies.
   (You don't have to manually install these if you have already installed Ulauncher)
 

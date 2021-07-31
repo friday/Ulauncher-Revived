@@ -9,9 +9,7 @@ from time import time
 from functools import lru_cache
 from gettext import gettext
 from xdg.BaseDirectory import xdg_config_home, xdg_cache_home, xdg_data_dirs, xdg_data_home
-from ulauncher import __version__
-
-__ulauncher_data_directory__ = '../data/'
+from ulauncher import __version__, __data_directory__
 
 DATA_DIR = os.path.join(xdg_data_home, 'ulauncher')
 # Use ulauncher_cache dir because of the WebKit bug
@@ -47,15 +45,10 @@ def get_data_path():
     is specified at installation time.
     """
 
-    # Get pathname absolute or relative.
-    path = os.path.join(
-        os.path.dirname(__file__), __ulauncher_data_directory__)
+    if not os.path.exists(__data_directory__):
+        raise ProjectPathNotFoundError(__data_directory__)
 
-    abs_data_path = os.path.abspath(path)
-    if not os.path.exists(abs_data_path):
-        raise ProjectPathNotFoundError(abs_data_path)
-
-    return abs_data_path
+    return __data_directory__
 
 
 def is_wayland():

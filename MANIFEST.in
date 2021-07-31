@@ -1,0 +1,3 @@
+include ulauncher/VERSION
+include README.md
+include LICENSE

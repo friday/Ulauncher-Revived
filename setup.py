@@ -198,21 +198,12 @@ def main():
         url='https://ulauncher.io',
         data_files=DataFileList([
             ('share/icons/hicolor/48x48/apps', [
-                'data/icons/system/default/ulauncher.svg'
-            ]),
-            ('share/icons/hicolor/48x48/apps', [
                 'data/icons/system/default/ulauncher-indicator.svg'
-            ]),
-            ('share/icons/hicolor/scalable/apps', [
-                'data/icons/system/default/ulauncher.svg'
             ]),
             ('share/icons/hicolor/scalable/apps', [
                 'data/icons/system/default/ulauncher-indicator.svg'
             ]),
             # for fedora + GNOME
-            ('share/icons/gnome/scalable/apps', [
-                'data/icons/system/default/ulauncher.svg'
-            ]),
             ('share/icons/gnome/scalable/apps', [
                 'data/icons/system/default/ulauncher-indicator.svg'
             ]),

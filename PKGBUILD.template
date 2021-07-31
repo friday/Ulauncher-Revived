@@ -31,6 +31,5 @@ package() {
   cd ulauncher
   install -Dm644 build/share/applications/ulauncher.desktop "$pkgdir/usr/share/applications/ulauncher.desktop"
   python setup.py install --root="$pkgdir" --optimize=1 --skip-build
-  rm -rf "$pkgdir"/usr/share/ulauncher/preferences/{no*,src,bow*,gul*,pack*}
   find $pkgdir -type d -name __pycache__ | xargs rm -rf
 }

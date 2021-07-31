@@ -24,8 +24,8 @@ make-release() {
 }
 
 create_deb() {
-    step1="ln -s /var/node_modules data/preferences" # take node modules from cache
-    step2="ln -s /var/bower_components data/preferences"
+    step1="ln -s /var/node_modules preferences-src" # take node modules from cache
+    step2="ln -s /var/bower_components preferences-src"
     step3="./ul test"
     step4="./ul build-deb $VERSION --deb"
     step5="./ul build-targz $VERSION"

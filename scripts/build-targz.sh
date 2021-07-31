@@ -13,7 +13,7 @@ build-targz () {
 
     set -ex
 
-    ./ul build-preferences --skip-if-built
+    ./ul build-preferences
 
     name="ulauncher"
     tmpdir="/tmp/$name"

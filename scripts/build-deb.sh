@@ -37,7 +37,7 @@ build-deb () {
     tmpsrc="$tmpdir/$name"
 
     info "Building Preferences UI"
-    ./ul build-preferences --skip-if-built
+    ./ul build-preferences
 
     info "Copying src to a temp dir"
     rm -rf $tmpdir/* || true

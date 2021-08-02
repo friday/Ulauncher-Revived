@@ -26,7 +26,7 @@ class build_wrapper(build_py):
         # Build Preferences before python package build
         subprocess.run(["./ul", "build-preferences"], check=True)
         build_py.run(self)
-        print("Overwriteing the namespace package with fixed values")
+        print("Overwriting the namespace package with fixed values")
         namespace_package = os.path.realpath(os.path.join(self.build_lib, "ulauncher/__init__.py"))
         file = open(namespace_package, "w")
         file.write("\n".join([

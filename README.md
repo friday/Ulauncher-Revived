@@ -19,7 +19,7 @@ Distro support is [work in progress](https://github.com/friday/Ulauncher-Revived
 
 ## Using with Systemd
 
-If your distribution packages [ulauncher.service](contrib/systemd/ulauncher.service) or if you download it manually, then you can enable and start `ulauncher` by running:
+If your distribution packages [ulauncher.service](ulauncher.service) or if you download it manually, then you can enable and start `ulauncher` by running:
 
 ```
 systemctl --user enable --now ulauncher.service

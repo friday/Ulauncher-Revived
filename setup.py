@@ -41,7 +41,7 @@ setup(
     # These will be placed in /usr
     data_files=[
         ("share/applications", ["ulauncher.desktop"]),
-        ("lib/systemd/user", ["contrib/systemd/ulauncher.service"]),
+        ("lib/systemd/user", ["ulauncher.service"]),
         ("share/doc/ulauncher", ["README.md"]),
         ("share/licenses/ulauncher", ["LICENSE"]),
         # Install icons in themes, so different icons can be used for different depending on theme

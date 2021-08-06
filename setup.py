@@ -1,23 +1,25 @@
 #!/usr/bin/env python3
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 
-import os
 import subprocess
 import sys
-from glob import glob
+from pathlib import Path
 from setuptools import find_packages, setup
 from setuptools.command.build_py import build_py
 from ulauncher import __version__
 
 
-def data_files_from_path(package_path, real_path):
+def data_files_from_path(target_path, source_path):
     # Creates a list of valid entries for data_files weird custom format
     # Recurses over the real_path and adds it's content to package_path
     entries = []
-    for file in list(glob(real_path + "/**/*", recursive=True)):
-        if os.path.isfile(file):
-            [dir, name] = os.path.split(file)
-            entries.append((dir.replace(real_path, package_path), [dir + "/" + name]))
+    for p in Path.cwd().glob(source_path + '/**/*'):
+        if p.is_file():
+            relative_file = p.relative_to(Path(source_path).absolute())
+            entries.append((
+                f'{target_path}/{relative_file.parent}',
+                [f'{source_path}/{relative_file}'])
+            )
     return entries
 
 
@@ -27,13 +29,10 @@ class build_wrapper(build_py):
         subprocess.run(["./ul", "build-preferences"], check=True)
         build_py.run(self)
         print("Overwriting the namespace package with fixed values")
-        namespace_package = os.path.realpath(os.path.join(self.build_lib, "ulauncher/__init__.py"))
-        file = open(namespace_package, "w")
-        file.write("\n".join([
-            "__data_directory__ = '%s'" % os.path.join(sys.prefix, "share/ulauncher"),
+        Path(self.build_lib + "/ulauncher/__init__.py").write_text("\n".join([
+            "__data_directory__ = '%s/share/ulauncher'" % sys.prefix,
             "__version__ = '%s'" % __version__
         ]))
-        file.close()
 
 
 setup(

@@ -4,19 +4,16 @@
 # Builds tar.gz file with (un)install script and Ulauncher src
 ##############################################################
 build-targz () {
-    # Args:
-    # $1 - version
+    version=$(<ulauncher/VERSION)
+    name="ulauncher"
+    tmpdir="/tmp/$name"
 
     echo "###################################"
-    echo "# Building ulauncher-$1.tar.gz"
+    echo "# Building ulauncher-$version.tar.gz"
     echo "###################################"
 
     set -ex
-
     ./ul build-preferences
-
-    name="ulauncher"
-    tmpdir="/tmp/$name"
 
     rm -rf $tmpdir || true
     mkdir -p $tmpdir || true
@@ -37,8 +34,8 @@ build-targz () {
     cp -r data/preferences $tmpdir/data/preferences
 
     filename=$name
-    if [ ! -z "$1" ]; then
-        filename="${name}_$1"
+    if [ ! -z "$version" ]; then
+        filename="${name}_$version"
     fi
 
     cd /tmp

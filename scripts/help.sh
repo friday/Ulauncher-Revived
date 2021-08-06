@@ -61,9 +61,6 @@ The commands below are useful for maintainers:
     ${dim}Builds Docker images which are used for building packages.
     It also pushes them to the Docker registry${normal}
 
-  ${bold}./ul build-preferences
-    ${dim}Builds JS/HTML/CSS files for Preferences UI${normal}
-
   ${bold}./ul make-release
     ${dim}Releases a new version of Ulauncher${normal}
 

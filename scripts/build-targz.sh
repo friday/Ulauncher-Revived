@@ -13,7 +13,7 @@ build-targz () {
     echo "###################################"
 
     set -ex
-    ./ul build-preferences
+    ./setup.py build_prefs
 
     rm -rf $tmpdir || true
     mkdir -p $tmpdir || true

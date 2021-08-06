@@ -4,7 +4,7 @@
 import subprocess
 import sys
 from pathlib import Path
-from setuptools import find_packages, setup
+from setuptools import Command, find_packages, setup
 from setuptools.command.build_py import build_py
 from ulauncher import __version__
 
@@ -23,10 +23,50 @@ def data_files_from_path(target_path, source_path):
     return entries
 
 
+class build_preferences(Command):
+    description = "Build Ulauncher preferences (Vue.js app)"
+    force = "0"
+    verify = "1"
+    user_options = [
+        ('force=', None, 'Rebuild even if source has no modifications since last build (default: 0)'),
+        ('verify=', None, 'run linting, unit tests and always build (default: 1)')
+    ]
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        src = Path("preferences-src")
+        dst = Path("data/preferences")
+        force = hasattr(self, "force") and self.force == "1"
+        verify = hasattr(self, "verify") and self.verify == "1"
+
+        if not dst.is_dir() and not src.is_dir():
+            raise Exception("Preferences are missing.")
+
+        if not force and dst.is_dir() and not src.is_dir():
+            print("Using pre-built Preferences.")
+            return
+
+        sourceModified = max(map(lambda p: p.stat().st_mtime, Path.cwd().glob('preferences-src/**/*')))
+
+        if verify:
+            subprocess.run(["sh", "-c", "cd preferences-src; yarn; yarn lint; yarn unit"], check=True)
+
+        if not force and dst.is_dir() and dst.stat().st_mtime > sourceModified:
+            print("Detected no changes to Preferences since last build.")
+            return
+
+        subprocess.run(["sh", "-c", "cd preferences-src; yarn; yarn build"], check=True)
+
+
 class build_wrapper(build_py):
     def run(self):
         # Build Preferences before python package build
-        subprocess.run(["./ul", "build-preferences"], check=True)
+        build_preferences.run(self)
         build_py.run(self)
         print("Overwriting the namespace package with fixed values")
         Path(self.build_lib + "/ulauncher/__init__.py").write_text("\n".join([
@@ -58,5 +98,5 @@ setup(
         # Recursively add data as share/ulauncher
         *data_files_from_path("share/ulauncher", "data"),
     ],
-    cmdclass={'build_py': build_wrapper}
+    cmdclass={'build_py': build_wrapper, 'build_prefs': build_preferences}
 )

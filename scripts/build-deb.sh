@@ -32,7 +32,7 @@ build-deb () {
     tmpsrc="$tmpdir/$name"
 
     info "Building Preferences UI"
-    ./ul build-preferences
+    ./setup.py build_prefs
 
     info "Copying src to a temp dir"
     rm -rf $tmpdir/* || true

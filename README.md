@@ -76,14 +76,9 @@ You must have the following things installed:
   ```
 
 ### Build and Run
-1. `$ ./ul init-dev-env` installs Ulauncher data to `~/.local/share/ulauncher/`
-1. `$ ./ul dev-container` will take you into a Docker container from which you can run build and test scripts. Use `sudo -E ./ul dev-container` if your user is not in the `docker` group.
-1. `root@container: # ./ul build-preferences` build preferences UI in JS/HTML
-1. `root@container: # ./ul test` runs linter, type checker, and unit tests
-1. `$ ./ul run` runs the app
-
-Check out output of `./ul` to find more useful commands.
-
+1. `./setup.py build_prefs` build preferences UI in JS/HTML (pass `--verify 1` flag to force rebuild, run linter, type checker, and unit tests)
+1. If you have Ulauncher installed, make sure you stop the background process (`systemctl --user stop ulauncher.service`)
+1. `./bin/ulauncher` runs the app
 
 ## License
 

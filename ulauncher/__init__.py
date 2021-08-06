@@ -5,3 +5,4 @@ from os import path
 
 __data_directory__ = path.realpath(path.join(path.dirname(__file__), "../data/"))
 __version__ = open("ulauncher/VERSION").read().strip()
+__is_dev__ = True

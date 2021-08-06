@@ -71,7 +71,8 @@ class build_wrapper(build_py):
         print("Overwriting the namespace package with fixed values")
         Path(self.build_lib + "/ulauncher/__init__.py").write_text("\n".join([
             "__data_directory__ = '%s/share/ulauncher'" % sys.prefix,
-            "__version__ = '%s'" % __version__
+            "__version__ = '%s'" % __version__,
+            "__is_dev__ = False"
         ]))
 
 

@@ -76,7 +76,6 @@ You must have the following things installed:
   ```
 
 ### Build and Run
-1. `./setup.py build_prefs` build preferences UI in JS/HTML (pass `--verify 1` flag to force rebuild, run linter, type checker, and unit tests)
 1. If you have Ulauncher installed, make sure you stop the background process (`systemctl --user stop ulauncher.service`)
 1. `./bin/ulauncher` runs the app
 

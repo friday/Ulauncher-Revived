@@ -3,18 +3,13 @@
 # files). By default, this is ../data, relative your trunk layout
 # pylint: disable=deprecated-module
 import optparse
-
-__ulauncher_data_directory__ = '../data/'
-__license__ = 'GPL-3'
-__version__ = 'VERSION'
-
 import os
 from uuid import uuid4
 from time import time
 from functools import lru_cache
-
 from gettext import gettext
 from xdg.BaseDirectory import xdg_config_home, xdg_cache_home, xdg_data_dirs, xdg_data_home
+from ulauncher import __version__, __data_directory__
 
 DATA_DIR = os.path.join(xdg_data_home, 'ulauncher')
 # Use ulauncher_cache dir because of the WebKit bug
@@ -50,15 +45,10 @@ def get_data_path():
     is specified at installation time.
     """
 
-    # Get pathname absolute or relative.
-    path = os.path.join(
-        os.path.dirname(__file__), __ulauncher_data_directory__)
+    if not os.path.exists(__data_directory__):
+        raise ProjectPathNotFoundError(__data_directory__)
 
-    abs_data_path = os.path.abspath(path)
-    if not os.path.exists(abs_data_path):
-        raise ProjectPathNotFoundError(abs_data_path)
-
-    return abs_data_path
+    return __data_directory__
 
 
 def is_wayland():
@@ -81,7 +71,7 @@ def gdk_backend():
 @lru_cache()
 def get_options():
     """Support for command line options"""
-    parser = optparse.OptionParser(version="%%prog %s" % get_version())
+    parser = optparse.OptionParser(version="%%prog %s" % __version__)
     parser.add_option(
         "-v", "--verbose", action="count", dest="verbose",
         help=gettext("Show debug messages"))
@@ -108,7 +98,7 @@ def get_default_shortcuts():
         "name": "Google Search",
         "keyword": "g",
         "cmd": "https://google.com/search?q=%s",
-        "icon": get_data_file('media/google-search-icon.png'),
+        "icon": get_data_file('icons/google-search.png'),
         "is_default_search": True,
         "run_without_argument": False,
         "added": time()
@@ -118,7 +108,7 @@ def get_default_shortcuts():
         "name": "Stack Overflow",
         "keyword": "so",
         "cmd": "http://stackoverflow.com/search?q=%s",
-        "icon": get_data_file('media/stackoverflow-icon.svg'),
+        "icon": get_data_file('icons/stackoverflow.svg'),
         "is_default_search": True,
         "run_without_argument": False,
         "added": time()
@@ -128,7 +118,7 @@ def get_default_shortcuts():
         "name": "Wikipedia",
         "keyword": "wiki",
         "cmd": "https://en.wikipedia.org/wiki/%s",
-        "icon": get_data_file('media/wikipedia-icon.png'),
+        "icon": get_data_file('icons/wikipedia.png'),
         "is_default_search": True,
         "run_without_argument": False,
         "added": time()

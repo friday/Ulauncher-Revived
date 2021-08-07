@@ -11,7 +11,7 @@
     <property name="title">Ulauncher - Application Launcher</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
-    <property name="icon_name">ulauncher</property>
+    <property name="icon">../icons/ulauncher.svg</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>

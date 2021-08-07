@@ -19,7 +19,7 @@ Distro support is [work in progress](https://github.com/friday/Ulauncher-Revived
 
 ## Using with Systemd
 
-If your distribution packages [ulauncher.service](contrib/systemd/ulauncher.service) or if you download it manually, then you can enable and start `ulauncher` by running:
+If your distribution packages [ulauncher.service](ulauncher.service) or if you download it manually, then you can enable and start `ulauncher` by running:
 
 ```
 systemctl --user enable --now ulauncher.service
@@ -52,8 +52,8 @@ Checkout [Code Contribution Guidelines](https://github.com/friday/Ulauncher-Revi
 
 You must have the following things installed:
 
-* [Docker](https://docs.docker.com/engine/installation/)
-* python3-distutils-extra
+* [Yarn](https://classic.yarnpkg.com/en/docs/install)
+* python3-setuptools
 * Application runtime dependencies.
   (You don't have to manually install these if you have already installed Ulauncher)
 
@@ -76,14 +76,8 @@ You must have the following things installed:
   ```
 
 ### Build and Run
-1. `$ ./ul init-dev-env` installs Ulauncher data to `~/.local/share/ulauncher/`
-1. `$ ./ul dev-container` will take you into a Docker container from which you can run build and test scripts. Use `sudo -E ./ul dev-container` if your user is not in the `docker` group.
-1. `root@container: # ./ul build-preferences` build preferences UI in JS/HTML
-1. `root@container: # ./ul test` runs linter, type checker, and unit tests
-1. `$ ./ul run` runs the app
-
-Check out output of `./ul` to find more useful commands.
-
+1. If you have Ulauncher installed, make sure you stop the background process (`systemctl --user stop ulauncher.service`)
+1. `./bin/ulauncher` runs the app
 
 ## License
 

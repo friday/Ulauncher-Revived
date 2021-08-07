@@ -4,14 +4,7 @@
 # Build tar.gz in a container
 #############################
 make-release() {
-    # Args:
-    # $1 version
-
-    export VERSION=$(fix-version-format "$1")
-    if [ -z "$VERSION" ]; then
-        echo "First argument should be version"
-        exit 1
-    fi
+    export VERSION=$(<ulauncher/VERSION)
 
     info "Releasing Ulauncher $VERSION"
 
@@ -27,8 +20,8 @@ create_deb() {
     step1="ln -s /var/node_modules preferences-src" # take node modules from cache
     step2="ln -s /var/bower_components preferences-src"
     step3="./ul test"
-    step4="./ul build-deb $VERSION --deb"
-    step5="./ul build-targz $VERSION"
+    step4="./ul build-deb --deb"
+    step5="./ul build-targz"
 
     h1 "Creating .deb"
     set -x
@@ -54,12 +47,12 @@ create_rpms() {
 
     set -ex
     docker run -v $(pwd):/root/ulauncher --name ulauncher-rpm $FEDORA_BUILD_IMAGE \
-        bash -c "./ul build-rpm $VERSION fedora"
+        bash -c "./ul build-rpm fedora"
     docker cp ulauncher-rpm:/tmp/ulauncher_${VERSION}_fedora.rpm .
     docker rm ulauncher-rpm
 
     docker run -v $(pwd):/root/ulauncher --name ulauncher-rpm $FEDORA_33_BUILD_IMAGE \
-        bash -c "./ul build-rpm $VERSION fedora fedora33"
+        bash -c "./ul build-rpm fedora fedora33"
     docker cp ulauncher-rpm:/tmp/ulauncher_${VERSION}_fedora33.rpm .
     docker rm ulauncher-rpm
 
@@ -82,16 +75,16 @@ aur_update() {
 }
 
 launchpad_upload() {
-    # check if release name contains beta or dev to decide which PPA to use
-    if echo "$VERSION" | grep -q beta; then
+    # check if release name contains dev to decide which PPA to use
+    if echo "$VERSION" | grep -q dev; then
         PPA="agornostal/ulauncher-dev"
     else
         PPA="agornostal/ulauncher"
     fi
-    xenial="PPA=$PPA RELEASE=xenial ./ul build-deb $VERSION --upload"
-    hirsute="PPA=$PPA RELEASE=hirsute ./ul build-deb $VERSION --upload"
-    focal="PPA=$PPA RELEASE=focal ./ul build-deb $VERSION --upload"
-    groovy="PPA=$PPA RELEASE=groovy ./ul build-deb $VERSION --upload"
+    xenial="PPA=$PPA RELEASE=xenial ./ul build-deb --upload"
+    hirsute="PPA=$PPA RELEASE=hirsute ./ul build-deb --upload"
+    focal="PPA=$PPA RELEASE=focal ./ul build-deb --upload"
+    groovy="PPA=$PPA RELEASE=groovy ./ul build-deb --upload"
 
     # extracts ~/.shh for uploading package to ppa.launchpad.net via sftp
     # then uploads each release

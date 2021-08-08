@@ -3,7 +3,7 @@ Ulauncher Revived 🐧
 
 This repo was an attempt to fix critical Ulauncher issues during a time Ulauncher development went stale.
 
-The author of the fork has now been given ownership of the main Ulauncher repository and development will continue there.
+The author of the fork has now been given ownership of the main Ulauncher repository and development will continue there in collaboration with the author and contributors.
 
 ### Supported distros
 * [Arch](https://aur.archlinux.org/packages/ulauncher-revived-git/) `yay ulauncher-revived-git`(installs from git `dev` branch)
